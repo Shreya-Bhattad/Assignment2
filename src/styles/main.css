@@ -1,0 +1,22 @@
+.aura-layout {
+  display: flex;
+  height: 100vh;
+}
+.panel {
+  height: 100%;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  padding: 16px;
+}
+.palette {
+  width: 20%;
+  background: #f7f7fa;
+}
+.canvas {
+  width: 60%;
+  background: #fff;
+}
+.properties {
+  width: 20%;
+  background: #f7f7fa;
+}
