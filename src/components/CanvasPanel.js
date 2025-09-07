@@ -10,12 +10,14 @@ function CanvasPanel() {
 
   function handleDrop(e) {
     e.preventDefault();
+    e.stopPropagation(); // Prevent duplicate drop events
     const type = e.dataTransfer.getData('componentType');
     if (!type) return;
     // Get mouse position relative to canvas
     const rect = canvasRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
+    console.log('Drop event fired:', { type, x, y });
     const id = Date.now();
     dispatch({
       type: 'ADD_COMPONENT',
@@ -63,6 +65,9 @@ function CanvasPanel() {
     document.removeEventListener('mouseup', handleMouseUp);
   }
 
+  React.useEffect(() => {
+    console.log('CanvasPanel components:', state.components);
+  }, [state.components]);
   return (
     <div
       className="canvas-panel"

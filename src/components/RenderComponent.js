@@ -1,6 +1,7 @@
 import React from 'react';
 
 export function RenderComponent({ comp }) {
+  console.log('RenderComponent called for:', comp);
   switch (comp.type) {
     case 'Text':
       return (
@@ -9,7 +10,7 @@ export function RenderComponent({ comp }) {
           fontWeight: comp.properties.fontWeight || '400',
           color: comp.properties.color || '#222',
         }}>
-          {comp.properties.text || 'Text'}
+          {comp.properties.text || ''}
         </span>
       );
     case 'TextArea':
@@ -29,7 +30,7 @@ export function RenderComponent({ comp }) {
       return (
         <img
           src={comp.properties.imageUrl || 'https://via.placeholder.com/100'}
-          alt={comp.properties.altText || 'Image'}
+          alt={comp.properties.altText || ''}
           style={{
             objectFit: comp.properties.objectFit || 'cover',
             borderRadius: comp.properties.borderRadius || 0,
@@ -52,7 +53,7 @@ export function RenderComponent({ comp }) {
             textDecoration: 'none',
           }}
         >
-          {comp.properties.buttonText || 'Button'}
+          {comp.properties.buttonText || ''}
         </a>
       );
     default:
