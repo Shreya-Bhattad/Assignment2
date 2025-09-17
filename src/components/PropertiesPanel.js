@@ -113,7 +113,9 @@ function PropertiesPanel() {
   return (
     <div className="properties-panel">
       <h3>Properties</h3>
-      {fields}
+      <form style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+        {fields}
+      </form>
       {Object.keys(errors).length > 0 && (
         <div style={{color:'red',marginTop:8}}>
           Please fix the above errors before saving or exporting.
