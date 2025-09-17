@@ -55,7 +55,6 @@ function CanvasPanel() {
     if (e.button !== 0) return;
     e.preventDefault();
     e.stopPropagation();
-    console.log('[DRAG] MouseDown on component', { compId: comp.id, mouse: { x: e.clientX, y: e.clientY }, compPos: { x: comp.x, y: comp.y } });
     setDraggedId(comp.id);
     setOffset({
       x: e.clientX - comp.x - canvasRef.current.getBoundingClientRect().left,
@@ -69,21 +68,17 @@ function CanvasPanel() {
     };
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mouseup', handleMouseUp);
-    console.log('[DRAG] Registered mousemove and mouseup listeners on window');
   }
 
   function handleMouseMove(e) {
     const currentDraggedId = draggedIdRef.current;
     const currentOffset = offsetRef.current;
-    console.log('[DRAG] MouseMove event', e);
-    console.log('draggedId (ref)', currentDraggedId);
     if (currentDraggedId == null) return;
     // Only respond to left mouse button (in case of multi-button mouse)
     if (e.buttons !== undefined && (e.buttons & 1) === 0) return;
     const rect = canvasRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left - currentOffset.x;
     const y = e.clientY - rect.top - currentOffset.y;
-    console.log('[DRAG] MouseMove', { draggedId: currentDraggedId, mouse: { x: e.clientX, y: e.clientY }, canvas: { left: rect.left, top: rect.top }, offset: currentOffset, newPos: { x, y } });
     dispatch({
       type: 'UPDATE_COMPONENT',
       payload: {
@@ -94,12 +89,10 @@ function CanvasPanel() {
   }
 
   function handleMouseUp(e) {
-    console.log('[DRAG] MouseUp', { draggedId });
     setDraggedId(null);
     draggedIdRef.current = null;
     window.removeEventListener('mousemove', handleMouseMove);
     window.removeEventListener('mouseup', handleMouseUp);
-    console.log('[DRAG] Removed mousemove and mouseup listeners from window');
   }
 
   return (
@@ -127,7 +120,6 @@ function CanvasPanel() {
           }}
           onClick={() => dispatch({ type: 'SELECT_COMPONENT', payload: comp.id })}
           onMouseDown={(e) => {
-            console.log('[DRAG] onMouseDown event', e);
             handleMouseDown(e, comp);
           }}
         >
