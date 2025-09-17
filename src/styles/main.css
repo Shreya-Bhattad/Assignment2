@@ -5,8 +5,10 @@
 }
 
 .preview-panel {
-  min-height: 120px;
+  min-height: 220px;
+  max-height: 400px;
   box-sizing: border-box;
+  overflow-y: auto;
 }
 .panel {
   height: 100%;
