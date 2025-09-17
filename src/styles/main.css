@@ -20,29 +20,3 @@
   width: 20%;
   background: #f7f7fa;
 }
-.preview-panel-fixed {
-  position: fixed;
-  right: 0;
-  top: 0;
-  width: 350px;
-  height: 100vh;
-  background: #f7f7fa;
-  border-left: 2px solid #ddd;
-  box-shadow: -2px 0 8px rgba(0,0,0,0.04);
-  z-index: 1000;
-  overflow-y: auto;
-  padding: 16px;
-}
-.preview-panel-fixed h3 {
-  margin-top: 0;
-  font-size: 1.2em;
-  font-weight: 600;
-}
-.preview-content {
-  background: #fff;
-  border: 1px solid #eee;
-  padding: 8px;
-  min-height: 100px;
-  max-height: 80vh;
-  overflow-y: auto;
-}
