@@ -38,7 +38,24 @@ function Toolbar() {
   );
 }
 
+
+import { useEffect } from 'react';
+
 function App() {
+  // Prevent browser default drag-and-drop everywhere except our canvas
+  useEffect(() => {
+    function preventDefault(e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    document.addEventListener('dragover', preventDefault);
+    document.addEventListener('drop', preventDefault);
+    return () => {
+      document.removeEventListener('dragover', preventDefault);
+      document.removeEventListener('drop', preventDefault);
+    };
+  }, []);
+
   return (
     <AuraProvider>
       <Toolbar />

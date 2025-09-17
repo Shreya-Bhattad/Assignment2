@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useAura } from '../modules/auraContext';
 import { RenderComponent } from './RenderComponent';
 
+
 function PreviewPanel() {
   const { state } = useAura();
   const [copied, setCopied] = useState(false);
@@ -10,7 +11,9 @@ function PreviewPanel() {
     return state.components.map(comp => {
       switch (comp.type) {
         case 'Text':
-          return `<span style="font-size:${comp.properties.fontSize||16}px;font-weight:${comp.properties.fontWeight||'400'};color:${comp.properties.color||'#222'};position:absolute;left:${comp.x}px;top:${comp.y}px;">${comp.properties.text||'Text'}</span>`;
+          return comp.properties.text
+            ? `<span style="font-size:${comp.properties.fontSize||16}px;font-weight:${comp.properties.fontWeight||'400'};color:${comp.properties.color||'#222'};position:absolute;left:${comp.x}px;top:${comp.y}px;">${comp.properties.text}</span>`
+            : '';
         case 'TextArea':
           return `<textarea style="font-size:${comp.properties.fontSize||16}px;color:${comp.properties.color||'#222'};text-align:${comp.properties.textAlign||'left'};position:absolute;left:${comp.x}px;top:${comp.y}px;resize:none;">${comp.properties.text||''}</textarea>`;
         case 'Image':
@@ -30,7 +33,7 @@ function PreviewPanel() {
   }
 
   return (
-    <div style={{ padding: '8px', borderTop: '1px solid #ddd', background: '#f7f7fa' }}>
+    <div className="preview-panel" style={{ padding: '8px', borderTop: '1px solid #ddd', background: '#f7f7fa' }}>
       <button onClick={handleCopy}>Copy HTML</button>
       {copied && <span style={{ marginLeft: 8, color: 'green' }}>Copied!</span>}
       <div style={{ marginTop: 8, background: '#fff', padding: 8, border: '1px solid #eee', maxHeight: 200, overflow: 'auto' }}>

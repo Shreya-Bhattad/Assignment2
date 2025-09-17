@@ -11,8 +11,19 @@ const components = [
 function PalettePanel() {
   const { dispatch } = useAura();
 
+
   function handleDragStart(e, type) {
     e.dataTransfer.setData('componentType', type);
+    // Create a transparent drag image to prevent ghost text
+    const img = document.createElement('img');
+    img.src =
+      'data:image/svg+xml;base64,' +
+      btoa('<svg xmlns="http://www.w3.org/2000/svg" width="1" height="1"></svg>');
+    img.style.position = 'absolute';
+    img.style.left = '-1000px';
+    document.body.appendChild(img);
+    e.dataTransfer.setDragImage(img, 0, 0);
+    setTimeout(() => document.body.removeChild(img), 0);
   }
 
   return (

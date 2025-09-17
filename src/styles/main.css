@@ -1,6 +1,12 @@
 .aura-layout {
   display: flex;
-  height: 100vh;
+  height: calc(100vh - 120px); /* Leaves space for toolbar and preview panel */
+  min-height: 300px;
+}
+
+.preview-panel {
+  min-height: 120px;
+  box-sizing: border-box;
 }
 .panel {
   height: 100%;
@@ -8,9 +14,14 @@
   border: 1px solid #ddd;
   padding: 16px;
 }
+
 .palette {
   width: 20%;
   background: #f7f7fa;
+}
+
+.palette-panel ul li {
+  user-select: none;
 }
 .canvas {
   width: 60%;

@@ -1,7 +1,6 @@
 import React from 'react';
 
 export function RenderComponent({ comp }) {
-  console.log('RenderComponent called for:', comp);
   switch (comp.type) {
     case 'Text':
       return (

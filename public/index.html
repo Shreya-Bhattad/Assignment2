@@ -7,5 +7,27 @@
 </head>
 <body>
   <div id="root"></div>
+  <script>
+    // Prevent default drop/dragover on the whole page except our React canvas
+    document.addEventListener('dragover', function(e) {
+      e.preventDefault();
+    });
+    document.addEventListener('drop', function(e) {
+      // Only allow drop if it's on our React canvas-panel
+      let node = e.target;
+      let allow = false;
+      while (node) {
+        if (node.classList && node.classList.contains('canvas-panel')) {
+          allow = true;
+          break;
+        }
+        node = node.parentNode;
+      }
+      if (!allow) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    });
+  </script>
 </body>
 </html>
