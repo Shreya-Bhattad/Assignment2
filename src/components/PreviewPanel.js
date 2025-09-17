@@ -41,10 +41,11 @@ function PreviewPanel() {
   }
 
   return (
-    <div className="preview-panel" style={{ padding: '8px', borderTop: '1px solid #ddd', background: '#f7f7fa' }}>
+    <div className="preview-panel" style={{ padding: '16px', borderTop: '2px solid #007bff', background: '#f7f7fa', marginTop: 16 }}>
+      <h3 style={{marginTop:0}}>Preview (Live HTML Output)</h3>
       <button onClick={handleCopy}>Copy HTML</button>
       {copied && <span style={{ marginLeft: 8, color: 'green' }}>Copied!</span>}
-      <div style={{ marginTop: 8, background: '#fff', padding: 8, border: '1px solid #eee', maxHeight: 200, overflow: 'auto' }}>
+      <div style={{ marginTop: 12, background: '#fff', padding: 12, border: '1px solid #007bff', borderRadius: 4, minHeight: 100, maxHeight: 320, overflow: 'auto' }}>
         <div dangerouslySetInnerHTML={{ __html: generateHTML() }} />
       </div>
     </div>

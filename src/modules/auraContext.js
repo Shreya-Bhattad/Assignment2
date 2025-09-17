@@ -9,13 +9,20 @@ const initialState = {
 
 function auraReducer(state, action) {
   switch (action.type) {
-    case 'ADD_COMPONENT':
+    case 'ADD_COMPONENT': {
+      // Prevent duplicate IDs
+      if (state.components.some(comp => comp.id === action.payload.id)) {
+        console.warn('[REDUCER] Duplicate ID detected, skipping ADD_COMPONENT:', action.payload.id);
+        return state;
+      }
+      console.log('[REDUCER] ADD_COMPONENT:', action.payload);
       return {
         ...state,
         components: [...state.components, action.payload],
         history: [...state.history, state],
         future: [],
       };
+    }
     case 'SELECT_COMPONENT':
       return {
         ...state,

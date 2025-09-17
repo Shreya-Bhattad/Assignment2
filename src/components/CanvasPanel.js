@@ -8,6 +8,14 @@ function CanvasPanel() {
   const [draggedId, setDraggedId] = useState(null);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
 
+  function generateUniqueId() {
+    // Use crypto.randomUUID if available, else fallback to Date.now + Math.random
+    if (window.crypto && window.crypto.randomUUID) {
+      return window.crypto.randomUUID();
+    }
+    return `${Date.now()}-${Math.floor(Math.random() * 1000000)}`;
+  }
+
   function handleDrop(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -18,7 +26,8 @@ function CanvasPanel() {
     const rect = canvasRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    const id = Date.now();
+    const id = generateUniqueId();
+    console.log('[DROP] Adding component:', { id, type, x, y });
     dispatch({
       type: 'ADD_COMPONENT',
       payload: {
@@ -80,6 +89,7 @@ function CanvasPanel() {
       {state.components.map((comp) => (
         <div
           key={comp.id}
+          data-id={comp.id}
           style={{
             position: 'absolute',
             left: comp.x,
