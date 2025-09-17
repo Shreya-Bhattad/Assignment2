@@ -5,7 +5,7 @@ export function RenderComponent({ comp }) {
     case 'Text':
       return (
         <span style={{
-          fontSize: comp.properties.fontSize || 16,
+          fontSize: comp.properties.fontSize ? Number(comp.properties.fontSize) : 16,
           fontWeight: comp.properties.fontWeight || '400',
           color: comp.properties.color || '#222',
         }}>
@@ -16,7 +16,7 @@ export function RenderComponent({ comp }) {
       return (
         <textarea
           style={{
-            fontSize: comp.properties.fontSize || 16,
+            fontSize: comp.properties.fontSize ? Number(comp.properties.fontSize) : 16,
             color: comp.properties.color || '#222',
             textAlign: comp.properties.textAlign || 'left',
             resize: 'none',
@@ -44,11 +44,11 @@ export function RenderComponent({ comp }) {
           href={comp.properties.url || '#'}
           style={{
             display: 'inline-block',
-            fontSize: comp.properties.fontSize || 16,
-            padding: comp.properties.padding || 8,
+            fontSize: comp.properties.fontSize ? Number(comp.properties.fontSize) : 16,
+            padding: comp.properties.padding ? Number(comp.properties.padding) : 8,
             background: comp.properties.backgroundColor || '#007bff',
             color: comp.properties.textColor || '#fff',
-            borderRadius: comp.properties.borderRadius || 4,
+            borderRadius: comp.properties.borderRadius ? Number(comp.properties.borderRadius) : 4,
             textDecoration: 'none',
           }}
         >
