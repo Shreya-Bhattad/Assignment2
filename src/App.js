@@ -56,6 +56,7 @@ function App() {
     };
   }, []);
 
+  // Only render PreviewPanel below the main layout, never inside the canvas
   return (
     <AuraProvider>
       <Toolbar />
@@ -64,6 +65,7 @@ function App() {
         <div className="panel canvas"><CanvasPanel /></div>
         <div className="panel properties"><PropertiesPanel /></div>
       </div>
+      {/* PreviewPanel is visually and structurally separated from the canvas */}
       <PreviewPanel />
     </AuraProvider>
   );
